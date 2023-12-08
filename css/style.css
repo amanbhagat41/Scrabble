@@ -24,12 +24,12 @@ body {
   display: grid;
   grid-template-columns: 80px 77px 76px 72px 75px 75px 75px;
 }
-.boardoutline:hover{
+/* .boardoutline:hover{
    border: 2px solid #9f2222;
 }
 .tileoutline{
   border: 2px solid #9f2222;
-}
+} */
  .boardoutline{
   /* margin-left: 550px;
   margin-right: 965px; */
@@ -37,12 +37,12 @@ body {
   /* left: 540px; */
   /* width: 78px; */
   height: 80px;
-  border: 2px solid #9f2222;
+  /* border: 2px solid #9f2222; */
   position: relative;
 }
-.tiles{
+/* .tiles{
   border: 2px solid #9f2222;
-}
+} */
 .hand{
   width: 650px;
   height: 700px;
@@ -105,3 +105,6 @@ ul li{
   border: 1px solid #ddd;
   box-shadow: 3px 3px 6px 3px rgba(0,0,0,0.06)
 } */
+.highlight-droppable {
+  outline: 2px dashed blue; /* Example outline style */
+}

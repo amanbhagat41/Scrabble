@@ -45,13 +45,13 @@ let handSize = 7;
 // "Scrabble_Tile_U.jpg","Scrabble_Tile_V.jpg","Scrabble_Tile_W.jpg","Scrabble_Tile_X.jpg","Scrabble_Tile_Y.jpg","Scrabble_Tile_Z.jpg","Scrabble_Tile_Blank.jpg"]
 let totalScore = 0;
 $(document).ready(function () {
+  
   getHand();
 });
 
 function getHand() {
-  let iter = 0;
-  var offset = 1;
-  while (iter < handSize) {
+  let tilesNeeded = 0;
+  while (tilesNeeded < handSize) {
     var availableTiles = scrabbleTiles.pieces.filter(tile => canUseTile(tile.letter));
     if (availableTiles.length === 0) {
       break; // No available tiles left to draw
@@ -60,91 +60,136 @@ function getHand() {
     var num = Math.floor(Math.random() * availableTiles.length);
     let tile = availableTiles[num];
     let letter = tile.letter;
-    let imgElement = $('<img class="zin" alt="leter" src="graphics_data/Scrabble_Tiles/' + tile.image + '">').attr('alt', letter);
-    imgElement.appendTo(".tile" + offset);
-    iter++;
-    offset++;
+    let imgElement = $('<img id="test"  src="graphics_data/Scrabble_Tiles/' + tile.image + '">').attr('class', letter);
+    imgElement.appendTo(".tiles li:not(:has(img)):first");
+    tilesNeeded++;
     tile.amount--;
   }
 }
-// function getHand() {
-//   let iter = 0;
-//   var offset = 1;
-//   while (true) {
-//     if (iter < 7) {
-//       var size = Object.keys(scrabbleTiles.pieces).length;
-//       var num = Math.floor(Math.random() * size);
-//       let tile = scrabbleTiles.pieces[num];
-//       let letter = tile.letter
-//       if (canUseTile(tile.letter)) {
-//         let imgElement = $('<img class="zin" alt = "leter" src="graphics_data/Scrabble_Tiles/' +tile.image +'">').attr('alt', letter);
-//         imgElement.appendTo(".tile" + offset);
-//         // $("#word").append(tile.letter);
-//         iter++;
-//         offset++;
-//         tile.amount--;
-//       }
-//       console.log(iter);
-//     } else {
-//       break;
-//     }
-//   }
-// }
 
-$("#submit").on("click", function () {
-  $(".hand img").remove();
-  // $( "#board li" ).remove();
-  getHand();
+
+$("#submitWord").on("click", function () {
+  let wordScore = 0;
+  let doubleLetter = false
+  let doubleWord =false
+  $(".onTheboard img").each(function () {
+    const tileLetter = $(this).attr('class'); // Get the letter of the current tile
+    const tile = scrabbleTiles.pieces.find(tile => tile.letter === tileLetter);
+
+    let tileValue = tile.value;
+    wordScore += tileValue;
+    
+  });
+
+  totalScore += wordScore; // Update the total score
+  document.getElementById("wordScore").innerHTML = "Word Score: " + wordScore;
+  document.getElementById("totalScore").innerHTML = "Total Score: " + totalScore;
+  $( ".onTheboard" ).empty();
+  tilesPlaces = []; 
+});
+
+
+$("#fillHand").on("click", function () { 
+  let currentHandSize = $(".tiles li img").filter(function() {
+    return !$(this).children().length; // Count the number of empty slots in the hand
+  }).length;
+  console.log(currentHandSize)
+  if (currentHandSize < 7) {
+    let tilesNeeded = 7 - currentHandSize;
+
+    for (let i = 0; i < tilesNeeded; i++) {
+      let availableTiles = scrabbleTiles.pieces.filter(tile => canUseTile(tile.letter));
+
+      if (availableTiles.length === 0) {
+        break; // No available tiles left to draw
+      }
+
+      let randomIndex = Math.floor(Math.random() * availableTiles.length);
+      let tile = availableTiles[randomIndex];
+
+      let letter = tile.letter;
+      let imgElement = $('<img id="test" src="graphics_data/Scrabble_Tiles/' + tile.image + '">').attr('class', letter);
+      imgElement.appendTo(".tiles li:not(:has(img)):first");
+      tile.amount--;
+    }
+  }
+});
+$("#restartGame").on("click", function () {
+  location.reload();
 });
 // $(function() {
 //   jQuery("#draggable").draggable({
 
 // });
 // });
-$(".tile1, .tile2, .tile3,.tile4,.tile5,.tile6,.tile7").draggable({
+$(".tile").draggable({
   scope: "demoBox",
   revertDuration: 100,
   start: function (event, ui) {
+    
     //Reset
-    $(".tile1, .tile2, .tile3,.tile4,.tile5,.tile6,.tile7").draggable(
+    $(".tile").draggable(
       "option",
       "revert",
       true
     );
   },
 });
+
+
+tilesPlaces = []
+let currentIndex = 0;
 $( "#board1, #board2, #board3, #board4, #board5, #board6, #board7, .tiles").droppable({
   scope: "demoBox",
+  over: function(event, ui) {
+    $(this).addClass('highlight-droppable'); // Apply a CSS class to highlight the drop area
+  },
+  out: function(event, ui) {
+    $(this).removeClass('highlight-droppable'); // Remove the highlighting CSS class when draggable leaves the drop area
+  },
   drop: function (event, ui) {
-    // Check if there's already a tile in the slot
-    if ($(this).children().length === 0) {
-      $("#word").append(scrabbleTiles.pieces.letter);
-      // var area = $(this).find("#board").html();
-      // var box = $(ui.draggable).html();
-      $(".tile1, .tile2, .tile3,.tile4,.tile5,.tile6,.tile7").draggable(
-        "option",
-        "revert",
-        false
-      );
-
-      //Realign item
-      $(ui.draggable).detach().css({ top: -15, left: 2 }).appendTo(this);
+    $(this).addClass('onTheboard');
+    currentIndex = parseInt(this.id.slice(5), 10);
+    // console.log(currentIndex)
+    if (tilesPlaces.length === 0) {
+      $(".tile").draggable("option", "revert", false);
+      ui.draggable.detach().css({ top: -15, left: 2 }).appendTo($(this));
+      tilesPlaces.push(currentIndex);
     } else {
-      // Handle if a tile is already present in the slot
-      // You can show a message or perform other actions here
-      console.log("Slot already filled!");
+      let adjacent = false;
+      for (let i = 0; i < tilesPlaces.length; i++) {
+        if (Math.abs(tilesPlaces[i] - currentIndex) === 1) {
+          adjacent = true;
+          break;
+        }
+      }
+      if (adjacent) {
+        $(".tile").draggable("option", "revert", false);
+        ui.draggable.detach().css({ top: -15, left: 2 }).appendTo($(this));
+        tilesPlaces.push(currentIndex);
+      }
     }
   }
 });
+
+
+
+
 $( ".tiles").droppable({
   scope: "demoBox",
+  over: function(event, ui) {
+    $(this).addClass('highlight-droppable'); // Apply a CSS class to highlight the drop area
+  },
+  out: function(event, ui) {
+    $(this).removeClass('highlight-droppable'); // Remove the highlighting CSS class when draggable leaves the drop area
+  },
   drop: function (event, ui) {
+    $(this).removeClass('onTheboard');
     // Check if there's already a tile in the slot
-
       $("#word").append(scrabbleTiles.pieces.letter);
       // var area = $(this).find("#board").html();
       // var box = $(ui.draggable).html();
-      $(".tile1, .tile2, .tile3,.tile4,.tile5,.tile6,.tile7").draggable(
+      $(".tile").draggable(
         "option",
         "revert",
         false
@@ -155,22 +200,6 @@ $( ".tiles").droppable({
     
   }
 });
-// $( "#board1, #board2, #board3, #board4, #board5, #board6, #board7, .tiles").droppable({
-//   scope: "demoBox",
-//   drop: function (event, ui) {
-//     $("#word").append(scrabbleTiles.pieces.letter);
-//     var area = $(this).find("#board").html();
-//     var box = $(ui.draggable).html();
-//     $(".tile1, .tile2, .tile3,.tile4,.tile5,.tile6,.tile7").draggable(
-//       "option",
-//       "revert",
-//       false
-//     );
-
-//     //Realign item
-//     $(ui.draggable).detach().css({ top: -15, left: 2 }).appendTo(this);
-//   },
-// });
 
 function canUseTile(tileLetter) {
   var tile = scrabbleTiles.pieces.find((tile) => tile.letter === tileLetter);
