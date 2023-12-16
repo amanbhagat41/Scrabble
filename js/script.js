@@ -70,30 +70,27 @@ $("#submitWord").on("click", function () {
   $(".onTheboard img").each(function () {
     const tileLetter = $(this).attr('class'); // Get the letter of the current tile
     const tile = scrabbleTiles.pieces.find(tile => tile.letter === tileLetter);
-
+    
     let tileValue = tile.value;
     if(doubleLetter){
-      
+      tileValue*=2;
     }
     wordScore += tileValue;
-    if(doubleWord){
-      wordScore*=2;
-    }
+    
   });
+    if(doubleWord){
+      wordScore = wordScore + wordScore;
+    }
 
   totalScore += wordScore; // Update the total score
   document.getElementById("wordScore").innerHTML = "Word Score: " + wordScore;
   document.getElementById("totalScore").innerHTML = "Total Score: " + totalScore;
   $( ".onTheboard" ).empty();
   tilesPlaces = []; 
-});
-
-
-$("#fillHand").on("click", function () { 
   let currentHandSize = $(".tiles li img").filter(function() {
     return !$(this).children().length; // Count the number of empty slots in the hand
   }).length;
-  console.log(currentHandSize)
+  // console.log(currentHandSize)
   if (currentHandSize < 7) {
     let tilesNeeded = 7 - currentHandSize;
 
@@ -104,8 +101,8 @@ $("#fillHand").on("click", function () {
         break; // No available tiles left to draw
       }
 
-      let randomIndex = Math.floor(Math.random() * availableTiles.length);
-      let tile = availableTiles[randomIndex];
+      let num = Math.floor(Math.random() * availableTiles.length);
+      let tile = availableTiles[num];
 
       let letter = tile.letter;
       let imgElement = $('<img id="test" src="graphics_data/Scrabble_Tiles/' + tile.image + '">').attr('class', letter);
@@ -114,6 +111,33 @@ $("#fillHand").on("click", function () {
     }
   }
 });
+
+
+// $("#fillHand").on("click", function () { 
+//   let currentHandSize = $(".tiles li img").filter(function() {
+//     return !$(this).children().length; // Count the number of empty slots in the hand
+//   }).length;
+//   console.log(currentHandSize)
+//   if (currentHandSize < 7) {
+//     let tilesNeeded = 7 - currentHandSize;
+
+//     for (let i = 0; i < tilesNeeded; i++) {
+//       let availableTiles = scrabbleTiles.pieces.filter(tile => canUseTile(tile.letter));
+
+//       if (availableTiles.length === 0) {
+//         break; // No available tiles left to draw
+//       }
+
+//       let num = Math.floor(Math.random() * availableTiles.length);
+//       let tile = availableTiles[num];
+
+//       let letter = tile.letter;
+//       let imgElement = $('<img id="test" src="graphics_data/Scrabble_Tiles/' + tile.image + '">').attr('class', letter);
+//       imgElement.appendTo(".tiles li:not(:has(img)):first");
+//       tile.amount--;
+//     }
+//   }
+// });
 $("#restartGame").on("click", function () {
   location.reload();
 });
@@ -122,7 +146,8 @@ $(".tile").draggable({
   scope: "demoBox",
   revertDuration: 100,
   start: function (event, ui) {
-    
+    currentIndex = parseInt(this.id.slice(5), 10);
+    // console.log(currentIndex)
     //Reset
     $(".tile").draggable(
       "option",
@@ -153,21 +178,21 @@ $( "#board1, #board2, #board3, #board4, #board5, #board6, #board7, .tiles").drop
     if(currentIndex === 2){
       doubleWord =true;
     }
-    console.log(doubleWord)
+    // console.log(doubleWord)
     // console.log(currentIndex)
     if (tilesPlaces.length === 0) {
       $(".tile").draggable("option", "revert", false);
       ui.draggable.detach().css({ top: -15, left: 2 }).appendTo($(this));
       tilesPlaces.push(currentIndex);
     } else {
-      let adjacent = false;
+      let nextTo = false;
       for (let i = 0; i < tilesPlaces.length; i++) {
         if (Math.abs(tilesPlaces[i] - currentIndex) === 1) {
-          adjacent = true;
+          nextTo = true;
           break;
         }
       }
-      if (adjacent) {
+      if (nextTo) {
         $(".tile").draggable("option", "revert", false);
         ui.draggable.detach().css({ top: -15, left: 2 }).appendTo($(this));
         tilesPlaces.push(currentIndex);
@@ -200,8 +225,8 @@ $( ".tiles").droppable({
       );
 
       //Realign item
-      $(ui.draggable).detach().css({ top: -15, left: 2 }).appendTo(this);
-    
+      $(ui.draggable).detach().css({ top: -130, left: 100}).appendTo(this);
+        
   }
 });
 
