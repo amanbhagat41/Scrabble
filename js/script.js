@@ -41,14 +41,15 @@ var scrabbleTiles = {
 let handSize = 7;
 let totalScore = 0;
 $(document).ready(function () {
-  
   getHand();
 });
 
 function getHand() {
   let tilesNeeded = 0;
   while (tilesNeeded < handSize) {
-    var availableTiles = scrabbleTiles.pieces.filter(tile => canUseTile(tile.letter));
+    var availableTiles = scrabbleTiles.pieces.filter((tile) =>
+      canUseTile(tile.letter)
+    );
     if (availableTiles.length === 0) {
       break; // No available tiles left to draw
     }
@@ -56,38 +57,41 @@ function getHand() {
     var num = Math.floor(Math.random() * availableTiles.length);
     let tile = availableTiles[num];
     let letter = tile.letter;
-    let imgElement = $('<img id="test"  src="graphics_data/Scrabble_Tiles/' + tile.image + '">').attr('class', letter);
+    let imgElement = $(
+      '<img id="test"  src="graphics_data/Scrabble_Tiles/' + tile.image + '">' //https://stackoverflow.com/questions/58550701/how-do-i-display-a-random-image-using-jquery-and-javascript used this to help implement
+    ).attr("class", letter);
     imgElement.appendTo(".tiles li:not(:has(img)):first");
     tilesNeeded++;
     tile.amount--;
   }
 }
 
-
 $("#submitWord").on("click", function () {
   let wordScore = 0;
-  
+
   $(".onTheboard img").each(function () {
-    const tileLetter = $(this).attr('class'); // Get the letter of the current tile
-    const tile = scrabbleTiles.pieces.find(tile => tile.letter === tileLetter);
-    
+    const tileLetter = $(this).attr("class"); // Get the letter of the current tile
+    const tile = scrabbleTiles.pieces.find(
+      (tile) => tile.letter === tileLetter
+    );
+
     let tileValue = tile.value;
-    if(doubleLetter){
-      tileValue*=2;
+    if (doubleLetter) {
+      tileValue *= 2;
     }
     wordScore += tileValue;
-    
   });
-    if(doubleWord){
-      wordScore = wordScore + wordScore;
-    }
+  if (doubleWord) {
+    wordScore = wordScore + wordScore;
+  }
 
   totalScore += wordScore; // Update the total score
   document.getElementById("wordScore").innerHTML = "Word Score: " + wordScore;
-  document.getElementById("totalScore").innerHTML = "Total Score: " + totalScore;
-  $( ".onTheboard" ).empty();
-  tilesPlaces = []; 
-  let currentHandSize = $(".tiles li img").filter(function() {
+  document.getElementById("totalScore").innerHTML =
+    "Total Score: " + totalScore;
+  $(".onTheboard").empty();
+  tilesPlaces = [];
+  let currentHandSize = $(".tiles li img").filter(function () {
     return !$(this).children().length; // Count the number of empty slots in the hand
   }).length;
   // console.log(currentHandSize)
@@ -95,7 +99,9 @@ $("#submitWord").on("click", function () {
     let tilesNeeded = 7 - currentHandSize;
 
     for (let i = 0; i < tilesNeeded; i++) {
-      let availableTiles = scrabbleTiles.pieces.filter(tile => canUseTile(tile.letter));
+      let availableTiles = scrabbleTiles.pieces.filter((tile) =>
+        canUseTile(tile.letter)
+      );
 
       if (availableTiles.length === 0) {
         break; // No available tiles left to draw
@@ -105,15 +111,16 @@ $("#submitWord").on("click", function () {
       let tile = availableTiles[num];
 
       let letter = tile.letter;
-      let imgElement = $('<img id="test" src="graphics_data/Scrabble_Tiles/' + tile.image + '">').attr('class', letter);
+      let imgElement = $(
+        '<img id="test" src="graphics_data/Scrabble_Tiles/' + tile.image + '">'
+      ).attr("class", letter);
       imgElement.appendTo(".tiles li:not(:has(img)):first");
       tile.amount--;
     }
   }
 });
 
-
-// $("#fillHand").on("click", function () { 
+// $("#fillHand").on("click", function () {
 //   let currentHandSize = $(".tiles li img").filter(function() {
 //     return !$(this).children().length; // Count the number of empty slots in the hand
 //   }).length;
@@ -149,34 +156,33 @@ $(".tile").draggable({
     currentIndex = parseInt(this.id.slice(5), 10);
     // console.log(currentIndex)
     //Reset
-    $(".tile").draggable(
-      "option",
-      "revert",
-      true
-    );
+    $(".tile").draggable("option", "revert", true);
   },
 });
 
-let doubleLetter = false
-let doubleWord =false
-tilesPlaces = []
+let doubleLetter = false;
+let doubleWord = false;
+tilesPlaces = [];
 let currentIndex = 0;
-$( "#board1, #board2, #board3, #board4, #board5, #board6, #board7, .tiles").droppable({
+//for droppable and draggable i used this to help implement https://codepen.io/jyloo/pen/GjbmLm
+$(
+  "#board1, #board2, #board3, #board4, #board5, #board6, #board7, .tiles"
+).droppable({
   scope: "demoBox",
-  over: function(event, ui) {
-    $(this).addClass('highlight-droppable'); // Apply a CSS class to highlight the drop area
+  over: function (event, ui) {
+    $(this).addClass("highlight-droppable"); // Apply a CSS class to highlight the drop area
   },
-  out: function(event, ui) {
-    $(this).removeClass('highlight-droppable'); // Remove the highlighting CSS class when draggable leaves the drop area
+  out: function (event, ui) {
+    $(this).removeClass("highlight-droppable"); // Remove the highlighting CSS class when draggable leaves the drop area
   },
   drop: function (event, ui) {
-    $(this).addClass('onTheboard');
+    $(this).addClass("onTheboard");
     currentIndex = parseInt(this.id.slice(5), 10);
-    if(currentIndex === 6){
-      doubleLetter =true;
+    if (currentIndex === 6) {
+      doubleLetter = true;
     }
-    if(currentIndex === 2){
-      doubleWord =true;
+    if (currentIndex === 2) {
+      doubleWord = true;
     }
     // console.log(doubleWord)
     // console.log(currentIndex)
@@ -198,36 +204,28 @@ $( "#board1, #board2, #board3, #board4, #board5, #board6, #board7, .tiles").drop
         tilesPlaces.push(currentIndex);
       }
     }
-  }
+  },
 });
 
-
-
-
-$( ".tiles").droppable({
+$(".tiles").droppable({
   scope: "demoBox",
-  over: function(event, ui) {
-    $(this).addClass('highlight-droppable'); // Apply a CSS class to highlight the drop area
+  over: function (event, ui) {
+    $(this).addClass("highlight-droppable"); // Apply a CSS class to highlight the drop area
   },
-  out: function(event, ui) {
-    $(this).removeClass('highlight-droppable'); // Remove the highlighting CSS class when draggable leaves the drop area
+  out: function (event, ui) {
+    $(this).removeClass("highlight-droppable"); // Remove the highlighting CSS class when draggable leaves the drop area
   },
   drop: function (event, ui) {
-    $(this).removeClass('onTheboard');
+    $(this).removeClass("onTheboard");
     // Check if there's already a tile in the slot
-      $("#word").append(scrabbleTiles.pieces.letter);
-      // var area = $(this).find("#board").html();
-      // var box = $(ui.draggable).html();
-      $(".tile").draggable(
-        "option",
-        "revert",
-        false
-      );
+    $("#word").append(scrabbleTiles.pieces.letter);
+    // var area = $(this).find("#board").html();
+    // var box = $(ui.draggable).html();
+    $(".tile").draggable("option", "revert", false);
 
-      //Realign item
-      $(ui.draggable).detach().css({ top: -130, left: 100}).appendTo(this);
-        
-  }
+    //Realign item
+    $(ui.draggable).detach().css({ top: -130, left: 100 }).appendTo(this);
+  },
 });
 
 function canUseTile(tileLetter) {

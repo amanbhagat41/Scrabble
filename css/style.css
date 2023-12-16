@@ -10,7 +10,7 @@ body {
   text-align: center; /* align to center   */
   background-color: bisque; /* backgroudn color bisque   */
 }
-#board{
+#board {
   margin: auto;
   margin-top: 100px;
   margin-bottom: 300px;
@@ -20,91 +20,40 @@ body {
   width: 529px;
   height: auto;
   background-repeat: no-repeat;
-  background-size:100% auto;
+  background-size: 100% auto;
   display: grid;
   grid-template-columns: 80px 77px 76px 72px 75px 75px 75px;
 }
-/* .boardoutline:hover{
-   border: 2px solid #9f2222;
-}
-.tileoutline{
-  border: 2px solid #9f2222;
-} */
- .boardoutline{
-  /* margin-left: 550px;
-  margin-right: 965px; */
-  /* z-index: 3; */
-  /* left: 540px; */
-  /* width: 78px; */
+.boardoutline {
   height: 80px;
-  /* border: 2px solid #9f2222; */
   position: relative;
 }
-/* .tiles{
-  border: 2px solid #9f2222;
-} */
-.hand{
+.hand {
   width: 650px;
   height: 700px;
   margin: auto;
-  background-size:100% auto;
+  background-size: 100% auto;
   background-image: url("../graphics_data/scrabble-tile-holder-406774_640.png");
   background-repeat: no-repeat;
 }
-/* #board>img */
-#board img{
+#board img {
   width: 75px;
   height: 75px;
 }
-/* #board2 img{
-  width: 75px;
-  height: 75px;
-}
-#board3 img{
-  width: 75px;
-  height: 75px;
-}
-#board4 img{
-  width: 75px;
-  height: 75px;
-}
-#board5 img{
-  width: 75px;
-  height: 75px;
-}
-#board6 img{
-  width: 75px;
-  height: 75px;
-}
-#board7 img{
-  width: 75px;
-  height: 75px;
-} */
-.tiles img{
+.tiles img {
   margin-top: 50px;
   width: 75px;
   height: 75px;
   z-index: 5;
 }
-ul li{
+ul li {
   display: inline-block;
 }
-#imgb{
+#imgb {
   /* z-index: 2; */
   position: absolute;
   margin-left: -250px;
 }
-/* #board{
-  width: 200px;
-  height: 200px;
-  background: #fff;
-  display: inline-block;
-  vertical-align: top;
-  position: relative;
-  margin-left: 30px;
-  border: 1px solid #ddd;
-  box-shadow: 3px 3px 6px 3px rgba(0,0,0,0.06)
-} */
 .highlight-droppable {
   outline: 2px dashed blue; /* Example outline style */
 }

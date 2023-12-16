@@ -12,18 +12,21 @@ updated by AB on Nov 29 2:25 pm
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8">
+    <meta charset="utf-8" />
     <title>Scrabble</title>
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+    <link
+      rel="stylesheet"
+      href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css"
+    />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
   </head>
   <body>
     <div class="heading">
-        <h1>Scrabble</h1>
+      <h1>Scrabble</h1>
     </div>
     <div id="wordScore">Word Score: 0</div>
     <div id="totalScore">Total Score: 0</div>
@@ -38,120 +41,122 @@ updated by AB on Nov 29 2:25 pm
     </div>
     <div id="board">
       <!-- <img src="graphics_data/Scrabble_Board_OneLineNew.png" id="imgb"> -->
-        <div id="board1" class="boardoutline boardSlot"></div>
-        <div id="board2" class="boardoutline boardSlot"></div>
-        <div id="board3"class="boardoutline boardSlot"></div>
-        <div id="board4"class="boardoutline boardSlot"></div>
-        <div id="board5"class="boardoutline boardSlot"></div>
-        <div id="board6"class="boardoutline boardSlot"></div>
-        <div id="board7"class="boardoutline boardSlot"></div>
+      <div id="board1" class="boardoutline boardSlot"></div>
+      <div id="board2" class="boardoutline boardSlot"></div>
+      <div id="board3" class="boardoutline boardSlot"></div>
+      <div id="board4" class="boardoutline boardSlot"></div>
+      <div id="board5" class="boardoutline boardSlot"></div>
+      <div id="board6" class="boardoutline boardSlot"></div>
+      <div id="board7" class="boardoutline boardSlot"></div>
     </div>
-    <button id="submitWord"  type="submit">Submit Word</button> <!--button to submit-->
-    <button id="restartGame"  type="submit">Restart Game</button>
+    <button id="submitWord" type="submit">Submit Word</button>
+    <!--button to submit-->
+    <button id="restartGame" type="submit">Restart Game</button>
     <!-- <button id="fillHand"  type="submit">Fill Hand</button> -->
     <div class="hand">
       <ul class="tiles">
-        <li class = "tile tileoutline" id="draggable"></li>
-        <li class = "tile tileoutline" id="draggable"></li>
-        <li class = "tile tileoutline" id="draggable"></li>
-        <li class = "tile tileoutline" id="draggable"></li>
-        <li class = "tile tileoutline" id="draggable"></li>
-        <li class = "tile tileoutline" id="draggable"></li>
-        <li class = "tile tileoutline" id="draggable"></li>
-        <li class = "tile tileoutline" id="draggable"></li>
-        <li class = "tile tileoutline" id="draggable"></li>
-        <li class = "tile tileoutline" id="draggable"></li>
-        <li class = "tile tileoutline" id="draggable"></li>
-        <li class = "tile tileoutline" id="draggable"></li>
-        <li class = "tile tileoutline" id="draggable"></li>
-        <li class = "tile tileoutline" id="draggable"></li>
-        <li class = "tile tileoutline" id="draggable"></li>
-        <li class = "tile tileoutline" id="draggable"></li>
-        <li class = "tile tileoutline" id="draggable"></li>
-        <li class = "tile tileoutline" id="draggable"></li>
-        <li class = "tile tileoutline" id="draggable"></li>
-        <li class = "tile tileoutline" id="draggable"></li>
-        <li class = "tile tileoutline" id="draggable"></li>
-        <li class = "tile tileoutline" id="draggable"></li>
-        <li class = "tile tileoutline" id="draggable"></li>
-        <li class = "tile tileoutline" id="draggable"></li>
-        <li class = "tile tileoutline" id="draggable"></li>
-        <li class = "tile tileoutline" id="draggable"></li>
-        <li class = "tile tileoutline" id="draggable"></li>
-        <li class = "tile tileoutline" id="draggable"></li>
-        <li class = "tile tileoutline" id="draggable"></li>
-        <li class = "tile tileoutline" id="draggable"></li>
-        <li class = "tile tileoutline" id="draggable"></li>
-        <li class = "tile tileoutline" id="draggable"></li>
-        <li class = "tile tileoutline" id="draggable"></li>
-        <li class = "tile tileoutline" id="draggable"></li>
-        <li class = "tile tileoutline" id="draggable"></li>
-        <li class = "tile tileoutline" id="draggable"></li>
-        <li class = "tile tileoutline" id="draggable"></li>
-        <li class = "tile tileoutline" id="draggable"></li>
-        <li class = "tile tileoutline" id="draggable"></li>
-        <li class = "tile tileoutline" id="draggable"></li>
-        <li class = "tile tileoutline" id="draggable"></li>
-        <li class = "tile tileoutline" id="draggable"></li>
-        <li class = "tile tileoutline" id="draggable"></li>
-        <li class = "tile tileoutline" id="draggable"></li>
-        <li class = "tile tileoutline" id="draggable"></li>
-        <li class = "tile tileoutline" id="draggable"></li>
-        <li class = "tile tileoutline" id="draggable"></li>
-        <li class = "tile tileoutline" id="draggable"></li>
-        <li class = "tile tileoutline" id="draggable"></li>
-        <li class = "tile tileoutline" id="draggable"></li>
-        <li class = "tile tileoutline" id="draggable"></li>
-        <li class = "tile tileoutline" id="draggable"></li>
-        <li class = "tile tileoutline" id="draggable"></li>
-        <li class = "tile tileoutline" id="draggable"></li>
-        <li class = "tile tileoutline" id="draggable"></li>
-        <li class = "tile tileoutline" id="draggable"></li>
-        <li class = "tile tileoutline" id="draggable"></li>
-        <li class = "tile tileoutline" id="draggable"></li>
-        <li class = "tile tileoutline" id="draggable"></li>
-        <li class = "tile tileoutline" id="draggable"></li>
-        <li class = "tile tileoutline" id="draggable"></li>
-        <li class = "tile tileoutline" id="draggable"></li>
-        <li class = "tile tileoutline" id="draggable"></li>
-        <li class = "tile tileoutline" id="draggable"></li>
-        <li class = "tile tileoutline" id="draggable"></li>
-        <li class = "tile tileoutline" id="draggable"></li>
-        <li class = "tile tileoutline" id="draggable"></li>
-        <li class = "tile tileoutline" id="draggable"></li>
-        <li class = "tile tileoutline" id="draggable"></li>
-        <li class = "tile tileoutline" id="draggable"></li>
-        <li class = "tile tileoutline" id="draggable"></li>
-        <li class = "tile tileoutline" id="draggable"></li>
-        <li class = "tile tileoutline" id="draggable"></li>
-        <li class = "tile tileoutline" id="draggable"></li>
-        <li class = "tile tileoutline" id="draggable"></li>
-        <li class = "tile tileoutline" id="draggable"></li>
-        <li class = "tile tileoutline" id="draggable"></li>
-        <li class = "tile tileoutline" id="draggable"></li>
-        <li class = "tile tileoutline" id="draggable"></li>
-        <li class = "tile tileoutline" id="draggable"></li>
-        <li class = "tile tileoutline" id="draggable"></li>
-        <li class = "tile tileoutline" id="draggable"></li>
-        <li class = "tile tileoutline" id="draggable"></li>
-        <li class = "tile tileoutline" id="draggable"></li>
-        <li class = "tile tileoutline" id="draggable"></li>
-        <li class = "tile tileoutline" id="draggable"></li>
-        <li class = "tile tileoutline" id="draggable"></li>
-        <li class = "tile tileoutline" id="draggable"></li>
-        <li class = "tile tileoutline" id="draggable"></li>
-        <li class = "tile tileoutline" id="draggable"></li>
-        <li class = "tile tileoutline" id="draggable"></li>
-        <li class = "tile tileoutline" id="draggable"></li>
-        <li class = "tile tileoutline" id="draggable"></li>
-        <li class = "tile tileoutline" id="draggable"></li>
-        <li class = "tile tileoutline" id="draggable"></li>
-        <li class = "tile tileoutline" id="draggable"></li>
-        <li class = "tile tileoutline" id="draggable"></li>
-        <li class = "tile tileoutline" id="draggable"></li>
-        <li class = "tile tileoutline" id="draggable"></li>
-        <li class = "tile tileoutline" id="draggable"></li>
+        <li class="tile tileoutline" id="draggable"></li>
+        <li class="tile tileoutline" id="draggable"></li>
+        <li class="tile tileoutline" id="draggable"></li>
+        <li class="tile tileoutline" id="draggable"></li>
+        <li class="tile tileoutline" id="draggable"></li>
+        <li class="tile tileoutline" id="draggable"></li>
+        <li class="tile tileoutline" id="draggable"></li>
+        <li class="tile tileoutline" id="draggable"></li>
+        <li class="tile tileoutline" id="draggable"></li>
+        <li class="tile tileoutline" id="draggable"></li>
+        <li class="tile tileoutline" id="draggable"></li>
+        <li class="tile tileoutline" id="draggable"></li>
+        <li class="tile tileoutline" id="draggable"></li>
+        <li class="tile tileoutline" id="draggable"></li>
+        <li class="tile tileoutline" id="draggable"></li>
+        <li class="tile tileoutline" id="draggable"></li>
+        <li class="tile tileoutline" id="draggable"></li>
+        <li class="tile tileoutline" id="draggable"></li>
+        <li class="tile tileoutline" id="draggable"></li>
+        <li class="tile tileoutline" id="draggable"></li>
+        <li class="tile tileoutline" id="draggable"></li>
+        <li class="tile tileoutline" id="draggable"></li>
+        <li class="tile tileoutline" id="draggable"></li>
+        <li class="tile tileoutline" id="draggable"></li>
+        <li class="tile tileoutline" id="draggable"></li>
+        <li class="tile tileoutline" id="draggable"></li>
+        <li class="tile tileoutline" id="draggable"></li>
+        <li class="tile tileoutline" id="draggable"></li>
+        <li class="tile tileoutline" id="draggable"></li>
+        <li class="tile tileoutline" id="draggable"></li>
+        <li class="tile tileoutline" id="draggable"></li>
+        <li class="tile tileoutline" id="draggable"></li>
+        <li class="tile tileoutline" id="draggable"></li>
+        <li class="tile tileoutline" id="draggable"></li>
+        <li class="tile tileoutline" id="draggable"></li>
+        <li class="tile tileoutline" id="draggable"></li>
+        <li class="tile tileoutline" id="draggable"></li>
+        <li class="tile tileoutline" id="draggable"></li>
+        <li class="tile tileoutline" id="draggable"></li>
+        <li class="tile tileoutline" id="draggable"></li>
+        <li class="tile tileoutline" id="draggable"></li>
+        <li class="tile tileoutline" id="draggable"></li>
+        <li class="tile tileoutline" id="draggable"></li>
+        <li class="tile tileoutline" id="draggable"></li>
+        <li class="tile tileoutline" id="draggable"></li>
+        <li class="tile tileoutline" id="draggable"></li>
+        <li class="tile tileoutline" id="draggable"></li>
+        <li class="tile tileoutline" id="draggable"></li>
+        <li class="tile tileoutline" id="draggable"></li>
+        <li class="tile tileoutline" id="draggable"></li>
+        <li class="tile tileoutline" id="draggable"></li>
+        <li class="tile tileoutline" id="draggable"></li>
+        <li class="tile tileoutline" id="draggable"></li>
+        <li class="tile tileoutline" id="draggable"></li>
+        <li class="tile tileoutline" id="draggable"></li>
+        <li class="tile tileoutline" id="draggable"></li>
+        <li class="tile tileoutline" id="draggable"></li>
+        <li class="tile tileoutline" id="draggable"></li>
+        <li class="tile tileoutline" id="draggable"></li>
+        <li class="tile tileoutline" id="draggable"></li>
+        <li class="tile tileoutline" id="draggable"></li>
+        <li class="tile tileoutline" id="draggable"></li>
+        <li class="tile tileoutline" id="draggable"></li>
+        <li class="tile tileoutline" id="draggable"></li>
+        <li class="tile tileoutline" id="draggable"></li>
+        <li class="tile tileoutline" id="draggable"></li>
+        <li class="tile tileoutline" id="draggable"></li>
+        <li class="tile tileoutline" id="draggable"></li>
+        <li class="tile tileoutline" id="draggable"></li>
+        <li class="tile tileoutline" id="draggable"></li>
+        <li class="tile tileoutline" id="draggable"></li>
+        <li class="tile tileoutline" id="draggable"></li>
+        <li class="tile tileoutline" id="draggable"></li>
+        <li class="tile tileoutline" id="draggable"></li>
+        <li class="tile tileoutline" id="draggable"></li>
+        <li class="tile tileoutline" id="draggable"></li>
+        <li class="tile tileoutline" id="draggable"></li>
+        <li class="tile tileoutline" id="draggable"></li>
+        <li class="tile tileoutline" id="draggable"></li>
+        <li class="tile tileoutline" id="draggable"></li>
+        <li class="tile tileoutline" id="draggable"></li>
+        <li class="tile tileoutline" id="draggable"></li>
+        <li class="tile tileoutline" id="draggable"></li>
+        <li class="tile tileoutline" id="draggable"></li>
+        <li class="tile tileoutline" id="draggable"></li>
+        <li class="tile tileoutline" id="draggable"></li>
+        <li class="tile tileoutline" id="draggable"></li>
+        <li class="tile tileoutline" id="draggable"></li>
+        <li class="tile tileoutline" id="draggable"></li>
+        <li class="tile tileoutline" id="draggable"></li>
+        <li class="tile tileoutline" id="draggable"></li>
+        <li class="tile tileoutline" id="draggable"></li>
+        <li class="tile tileoutline" id="draggable"></li>
+        <li class="tile tileoutline" id="draggable"></li>
+        <li class="tile tileoutline" id="draggable"></li>
+        <li class="tile tileoutline" id="draggable"></li>
+        <li class="tile tileoutline" id="draggable"></li>
+        <li class="tile tileoutline" id="draggable"></li>
+        <li class="tile tileoutline" id="draggable"></li>
+        <li class="tile tileoutline" id="draggable"></li>
       </ul>
     </div>
-      <script src="js/script.js"></script>
+    <script src="js/script.js"></script>
   </body>
+</html>
