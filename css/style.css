@@ -1,8 +1,9 @@
 /*
 File: .js
-GUI Assignment: 
+GUI Assignment: HW5: Scrabble
+Create a scrabble game with one board line using jquery
 Aman Bhagat, Umass Lowell Computer Science, aman_bhagat@student.uml.edu
-Copyright (c) 2021 by Aman.  All rights reserved.  May be freely copied or 
+Copyright (c) 2023 by Aman.  All rights reserved.  May be freely copied or 
 excerpted for educational purposes with credit to the author. 
 updated by AB on Nov 29 2:26 pm
 */
@@ -10,11 +11,10 @@ body {
   text-align: center; /* align to center   */
   background-color: bisque; /* backgroudn color bisque   */
 }
-#board {
+#board { /* adds css to the board and creates the board and a grid where the pieces and be placed */
   margin: auto;
   margin-top: 100px;
   margin-bottom: 300px;
-  /* overflow: hidden; */
   position: relative;
   background-image: url("../graphics_data/Scrabble_Board_OneLineNew.png");
   width: 529px;
@@ -24,11 +24,11 @@ body {
   display: grid;
   grid-template-columns: 80px 77px 76px 72px 75px 75px 75px;
 }
-.boardoutline {
+.boardoutline { /* outlines the board */ 
   height: 80px;
   position: relative;
 }
-.hand {
+.hand { /* creates the rack where the tiles are placed onto */ 
   width: 650px;
   height: 700px;
   margin: auto;
@@ -36,24 +36,24 @@ body {
   background-image: url("../graphics_data/scrabble-tile-holder-406774_640.png");
   background-repeat: no-repeat;
 }
-#board img {
+#board img { /* changes the imgs on the board */ 
   width: 75px;
   height: 75px;
 }
-.tiles img {
+.tiles img { /* changes the imgs on the tiles */ 
   margin-top: 50px;
   width: 75px;
   height: 75px;
   z-index: 5;
 }
-ul li {
+ul li { /* the tiles are placed inline */ 
   display: inline-block;
 }
-#imgb {
+#imgb { 
   /* z-index: 2; */
   position: absolute;
   margin-left: -250px;
 }
-.highlight-droppable {
-  outline: 2px dashed blue; /* Example outline style */
+.highlight-droppable { /* outlines the droppable parts when the tile can be placed */ 
+  outline: 2px dashed blue;
 }

@@ -1,1 +1,23 @@
 Most of the features are added, with some bugs that happen when doing some things.
+
+The things that do Work:
+ 7 Titles are randomly selected from the data structure.
+ Letters can be Dragged and Dropped Onto the Board
+ Program identifies which letter tile is dropped onto which Scrabble Square
+ Board Included at least two Bonus Squares
+ Score is kind of tallied correctly 
+ Any number of words can be played until user restarts and or depletes all titles
+ The Board is cleared after each round so that new words can be played
+ After playing a word the hand fills back up to 7
+ Score is kept for mutiple words
+ Tiles can be dragged from the rack to the scrabble board and bounce if not
+ Tiles can be dragged back to the rack
+ Tiles kind of cant be placed next to each other
+ Users can restart the game
+
+
+The Things that Dont work:
+
+When placing all 7 tiles on the board the rack area is really small so it is hard to but it back to the rack
+The double letter bonus square does not work sometimes
+Tiles cant be placed next to each other has a lot of bugs sometimes works sometimes does not

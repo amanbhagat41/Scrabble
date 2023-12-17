@@ -1,11 +1,9 @@
 <!--
 File: index.html
-GUI Assignment: HW3 Creating an Interactive Dynamic Table
-This program creates a Interacrive dynamic table using inputs set into a form
-and outputs a table that is scrollable if too big and the headers are sticky so
-they will follow the scroll
+GUI Assignment: HW5: Scrabble
+Create a scrabble game with one board line using jquery
 Aman Bhagat, Umass Lowell Computer Science, aman_bhagat@student.uml.edu
-Copyright (c) 2021 by Aman.  All rights reserved.  May be freely copied or 
+Copyright (c) 2023 by Aman.  All rights reserved.  May be freely copied or 
 excerpted for educational purposes with credit to the author. 
 updated by AB on Nov 29 2:25 pm
 -->
@@ -30,7 +28,7 @@ updated by AB on Nov 29 2:25 pm
     </div>
     <div id="wordScore">Word Score: 0</div>
     <div id="totalScore">Total Score: 0</div>
-    <div id="word">
+    <div id="word"><!-- outputs the word being played -->
       <div id="letter1"></div>
       <div id="letter2"></div>
       <div id="letter3"></div>
@@ -39,7 +37,7 @@ updated by AB on Nov 29 2:25 pm
       <div id="letter6"></div>
       <div id="letter7"></div>
     </div>
-    <div id="board">
+    <div id="board"> <!-- creates the board and all 7  slots where the tiles can be placed-->
       <!-- <img src="graphics_data/Scrabble_Board_OneLineNew.png" id="imgb"> -->
       <div id="board1" class="boardoutline boardSlot"></div>
       <div id="board2" class="boardoutline boardSlot"></div>
@@ -49,11 +47,11 @@ updated by AB on Nov 29 2:25 pm
       <div id="board6" class="boardoutline boardSlot"></div>
       <div id="board7" class="boardoutline boardSlot"></div>
     </div>
-    <button id="submitWord" type="submit">Submit Word</button>
+    <button id="submitWord" type="submit">Submit Word</button> <!-- buttom for submiting the word-->
     <!--button to submit-->
     <button id="restartGame" type="submit">Restart Game</button>
     <!-- <button id="fillHand"  type="submit">Fill Hand</button> -->
-    <div class="hand">
+    <div class="hand"> <!-- all the tiles that can be played there are 99 tiles so there are 99 li's-->
       <ul class="tiles">
         <li class="tile tileoutline" id="draggable"></li>
         <li class="tile tileoutline" id="draggable"></li>
