@@ -1,2 +1,2 @@
 Github Url: https://github.com/amanbhagat41/Scrabble
-Website Url: https://amanbhagat41.github.io/Gui1Hw5/
+Website Url: https://amanbhagat41.github.io/Scrabble/
